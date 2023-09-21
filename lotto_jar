@@ -1,0 +1,55 @@
+1. go to https://start.spring.io/ and select
+	Project = Maven
+	language = Java
+	Spring Boot = 3.1.2
+	artifact= <project_name>
+	description(optional)
+	packaging = jar
+	java =17
+	
+	add dependencies
+	spring data jpa, postgresql driver, spring boot devtools,
+	spring security and lombok
+	
+click generate button and extract downloaded project structure
+
+2. open application.properties file
+and paste code required for postgres connection 
+like.
+spring.datasource.url=jdbc:postgresql://localhost:5432/crud
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+spring.jpa.show-sql=true
+
+## Hibernate Properties
+#The SQL dialect makes Hibernate generate better SQL for the chosen database
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+spring.jpa.hibernate.ddl-auto = update
+
+
+3.create packages under src/main/java/ with com.example.<project_name> as packages name with entity, service, repository, secutiry, exception and controller
+
+4. Create User entity class under com.example.lottomgmt.entity 
+5. create User Repository Interface under  com.example.lottomgmt.repository
+6. create user services Interface and User services implementation class under com.example.lottomgmt.service
+7. create resource not found exception class under com.example.lottomgmt.exception
+8. create controller class under  com.example.lottomgmt.controller
+9. create security configuration class under com.example.lottomgmt.security package
+10. define method with /user/create endpoint in controller for creating user
+11. upon running an app the table will be created in postgres with name defined in @Table annotation and datatype in User entity
+12. create /test api for testing which returns 'hello world' , test it
+13. create /register api for registration which returns error or id of created user
+14. create /login api for login which returns error or necessary details of user logged in
+15. create Entry entity under .entity package
+16. create add entry and get entry methods in entry controller
+17. create entry services and Entry repository
+18. in security config class define filter chain and password encoders 
+19. user password encoder in user service impl to store and validate given password with stored one
+20. test all the APIs, create entity, service, repo and service impl for report
+21.
+
+
+
+
