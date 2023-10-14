@@ -6,6 +6,5 @@ import com.example.lottomgmt.entity.Entry;
 
 public interface EntryService {
 	void createEntry(List<Entry> entries);
-
-	List<Entry> getEntries(String date, Long userid) throws Exception;
+	List<Entry> getEntries(String date,String toDate,String fromDate) throws Exception;
 }

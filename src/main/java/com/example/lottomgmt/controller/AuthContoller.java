@@ -11,6 +11,7 @@ import com.example.lottomgmt.repository.RoleRepository;
 import com.example.lottomgmt.repository.UserRepository;
 import com.example.lottomgmt.security.jwt.JwtUtils;
 import com.example.lottomgmt.service.UserDetailsImpl;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseCookie;
@@ -43,6 +44,9 @@ public class AuthContoller {
     RoleRepository roleRepository;
 
 
+    @Autowired
+    private HttpSession session;
+
 
     @Autowired
     PasswordEncoder encoder;
@@ -54,6 +58,10 @@ public class AuthContoller {
                 .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        //Get Data From User Table
+        Optional<User> userData =  userRepository.findByUsername(user.getUsername());
+        session.setAttribute("user_id" ,userData.isPresent() ? userData.get().getId() : 0);
 
         String jwtCookie = jwtUtils.generateJwtCookie(authentication);
 

@@ -33,7 +33,7 @@ public class User {
 	@Column(length = 8, nullable = false)
 	private String shop_type;
 	
-	@Column(length = 20, nullable = false)
+	@Column(length = 50, nullable = false)
 	private String created_on;
 	
 	@Column(length = 20)

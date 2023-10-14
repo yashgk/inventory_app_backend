@@ -28,6 +28,8 @@ public class SecurityConfig  {
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
 
+
+
 	@Bean
 	public AuthTokenFilter authenticationJwtTokenFilter() {
 		return new AuthTokenFilter();
@@ -59,7 +61,8 @@ public class SecurityConfig  {
 				.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(auth ->
-						auth.requestMatchers("/api/auth/**").permitAll().
+						auth.requestMatchers("/api/auth" +
+										"/**").permitAll().
 								requestMatchers("/api/v1/user/**").permitAll()
 								.anyRequest().authenticated()
 				);

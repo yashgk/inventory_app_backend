@@ -31,7 +31,10 @@ public class EntryController {
 	@PostMapping("/add")
 	public ResponseEntity<Map<String, Object>> addEntry(@RequestBody Map<String,List<Entry>> entries) {
 		Map<String, Object> response = new HashMap<>();
+
 		try {
+
+
 			entryService.createEntry(entries.get("entries"));
 			response.put("message", "Entry Created Successfully!");
 			return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -42,12 +45,28 @@ public class EntryController {
 		}
 	}
 
-	@GetMapping("/get")
+//	@GetMapping("/get")
+//	@JsonView(View.class)
+//	public ResponseEntity<Map<String, Object>> getEntry(@Param("userid") Long userid, @Param("date") String date) {
+//		Map<String, Object> response = new HashMap<>();
+//		try {
+//			response.put("data", entryService.getEntries(date, userid));
+//			response.put("message", "Successful!");
+//			return ResponseEntity.status(HttpStatus.OK).body(response);
+//		} catch (Exception e) {
+//			System.err.println(e.toString());
+//			response.put("error", e.getMessage());
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+//		}
+//	}
+
+
+	@GetMapping("/getEntryData")
 	@JsonView(View.class)
-	public ResponseEntity<Map<String, Object>> getEntry(@Param("userid") Long userid, @Param("date") String date) {
+	public ResponseEntity<Map<String, Object>> getEntry(@Param("date") String date, @Param("fromDate") String fromDate ,@Param("toDate") String toDate) {
 		Map<String, Object> response = new HashMap<>();
 		try {
-			response.put("data", entryService.getEntries(date, userid));
+			response.put("data", entryService.getEntries(date, fromDate,toDate));
 			response.put("message", "Successful!");
 			return ResponseEntity.status(HttpStatus.OK).body(response);
 		} catch (Exception e) {
