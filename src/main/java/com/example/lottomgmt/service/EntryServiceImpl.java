@@ -22,9 +22,9 @@ public class EntryServiceImpl implements EntryService {
 
 	@Override
 	public void createEntry(List<Entry> entries) {
-		for (int i = 0; i < entries.size(); i++) {
-			entryRepository.save(entries.get(i));
-		}
+        for (Entry entry : entries) {
+            entryRepository.save(entry);
+        }
 	}
 
 	@Override

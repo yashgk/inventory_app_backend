@@ -14,7 +14,6 @@ import com.example.lottomgmt.service.UserDetailsImpl;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,8 +27,8 @@ import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/auth")
-public class AuthContoller {
+@RequestMapping("/api/v1/auth")
+public class AuthController {
 
     @Autowired
     AuthenticationManager authenticationManager;
